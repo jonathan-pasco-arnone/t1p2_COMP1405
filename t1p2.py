@@ -4,7 +4,8 @@
 # Created by: Jonathan Pasco-Arnone
 # Created on: September 2023
 
-import math # Used for rounding grades with decimals (ex: exam1 = 62.5%)
+import math  # Used for rounding grades with decimals (ex: exam1 = 62.5%)
+
 
 def main():
     """Main function"""
@@ -29,14 +30,17 @@ def main():
             exam1 = float(input("Exam: "))
             exam1_weight = float(input("Exam 1 weight (0-100%): "))
 
-            # Checks if all the grades are from 0-100%
-            if ([(int(math.ceil(midterm1)) in range(0,100)) and (int(math.ceil(midterm2)) in range(0,100)) and (int(math.ceil(midterm3)) in range(0,100)) and (int(math.ceil(exam1)) in range(0,100))]
-                and [(int(math.ceil(midterm1_weight)) in range(0,100)) and (int(math.ceil(midterm2_weight)) in range(0,100)) and (int(math.ceil(midterm3_weight)) in range(0,100)) and (int(math.ceil(exam1_weight)) in range(0,100))]):
-                final_grade = float(midterm1 * midterm1_weight + midterm2 * midterm2_weight + midterm3 * midterm3_weight + exam1 * exam1_weight)
-                print("\nYour final grade is ", final_grade)
-            else:
-                print("Please input grades from 0-100%")
+            if not (midterm1_weight + midterm2_weight + midterm3_weight + exam1_weight == 100):
+                print("Please make sure that the weights add up to 100%\n\n\n")
                 retry = True
+            else:
+                # Checks if all the grades are from 0-100%
+                if ((midterm1 >= 0 and midterm1 <= 100) and (midterm1_weight >= 0 and midterm1_weight <= 100) and (midterm2 >= 0 and midterm2 <= 100) and (midterm2_weight >= 0 and midterm2_weight <= 100) and (midterm3 >= 0 and midterm3 <= 100) and (midterm3_weight >= 0 and midterm3_weight <= 100) and (exam1 >= 0 and exam1 <= 100) and (exam1_weight >= 0 and exam1_weight <= 100)):
+                    final_grade = float(midterm1 * midterm1_weight / 100 + midterm2 * midterm2_weight / 100 + midterm3 * midterm3_weight / 100 + exam1 * exam1_weight / 100)
+                    print("\nYour final grade is ", final_grade)
+                else:
+                    print("Please input grades from 0-100% \n\n\n")
+                    retry = True
         except Exception:
             print("Please input an actual grade\n\n\n")
             retry = True
