@@ -4,6 +4,7 @@
 # Created by: Jonathan Pasco-Arnone
 # Created on: September 2023
 
+from time import sleep # To pause at the end of the code
 
 def main():
     """Main function"""
@@ -48,6 +49,7 @@ def main():
                           / 100)
 
                     print("\nYour final grade is ", final_grade)
+                    sleep(1) # So the file does not instantly close when it is finished running
                 else:
                     print("Please input grades from 0-100%\n\n\n")
                     retry = True
